@@ -43,8 +43,8 @@ func _physics_process(delta: float) -> void:
 		velocity.z = move_toward(velocity.z, direction.z * speed, acceleration * delta)
 
 		# Rotate character to face movement direction (add PI to flip 180 degrees)
-		var target_rotation = atan2(direction.x, direction.z) + PI
-		rotation.y = lerp_angle(rotation.y, target_rotation, 10.0 * delta)
+		var target_rotation = atan2(-direction.x, -direction.z) + PI
+		rotation.y = lerp_angle(rotation.y, target_rotation, 20.0 * delta)
 
 		# Play walk animation
 		if animation_player and animation_player.current_animation != "HumanArmature|Walking":
