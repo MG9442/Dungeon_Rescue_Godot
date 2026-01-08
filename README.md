@@ -15,13 +15,13 @@ A dungeon exploration game built with Godot 4.
 ## Starting Room
 
 The starting room (`scenes/starting_room.tscn`) includes:
-- A 25' x 12' x 10' enclosed room built with modular dungeon pack assets
-- Modular floor tiles using `Floor_Modular.fbx`
-- Modular wall segments using `Wall_Modular.fbx`
-- Four corner torches with atmospheric point lights
+- A 25' x 12' x 10' enclosed room (matching sketch dimensions)
+- Floor, walls, and ceiling built with CSG primitives
+- Four corner torches with glowing flames and warm point lights
 - Directional lighting with shadows for overall illumination
 - Camera positioned to view the entire room
 - Enhanced environment with SSAO and tonemapping
+- Dungeon-themed colors and atmospheric lighting
 
 ## Getting Started
 
@@ -32,6 +32,8 @@ The starting room (`scenes/starting_room.tscn`) includes:
 ## Next Steps
 
 - Add a character controller
-- Import and use the modular dungeon pack assets
-- Add interactive elements (doors, torches, etc.)
+- Replace CSG primitives with modular dungeon pack assets from `Updated Modular Dungeon Pack/FBX/`
+  - The FBX files will auto-import when you open the project in Godot
+  - You can drag and drop the imported models into the scene
+- Add interactive elements (doors, chests, etc.)
 - Create additional rooms and corridors
