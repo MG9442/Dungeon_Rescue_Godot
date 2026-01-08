@@ -6,6 +6,14 @@ extends CharacterBody3D
 @export var friction: float = 10.0
 @export var gravity: float = 20.0
 
+var animation_player: AnimationPlayer
+
+func _ready() -> void:
+	# Find the AnimationPlayer in the KnightCharacter scene
+	animation_player = $KnightCharacter/AnimationPlayer
+	if animation_player:
+		animation_player.play("Armature|Walk")
+
 func _physics_process(delta: float) -> void:
 	# Apply gravity
 	if not is_on_floor():
@@ -21,12 +29,20 @@ func _physics_process(delta: float) -> void:
 		velocity.x = move_toward(velocity.x, direction.x * speed, acceleration * delta)
 		velocity.z = move_toward(velocity.z, direction.z * speed, acceleration * delta)
 
-		# Rotate character to face movement direction
-		var target_rotation = atan2(direction.x, direction.z)
+		# Rotate character to face movement direction (add PI to flip 180 degrees)
+		var target_rotation = atan2(direction.x, direction.z) + PI
 		rotation.y = lerp_angle(rotation.y, target_rotation, 10.0 * delta)
+
+		# Play walk animation
+		if animation_player and not animation_player.is_playing():
+			animation_player.play("Armature|Walk")
 	else:
 		# Apply friction when not moving
 		velocity.x = move_toward(velocity.x, 0, friction * delta)
 		velocity.z = move_toward(velocity.z, 0, friction * delta)
+
+		# Stop animation when idle
+		if animation_player and animation_player.is_playing():
+			animation_player.stop()
 
 	move_and_slide()

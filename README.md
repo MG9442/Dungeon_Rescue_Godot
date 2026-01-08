@@ -34,6 +34,8 @@ The player character uses the Knight model from the Quaternius character pack:
 - Character automatically rotates to face movement direction
 - Smooth camera follows the player with a third-person perspective
 - Physics-based movement with acceleration and friction
+- Walking animation plays while moving
+- Collision detection with floors and walls
 
 ## Getting Started
 
