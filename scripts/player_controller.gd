@@ -9,26 +9,14 @@ extends CharacterBody3D
 var animation_player: AnimationPlayer
 
 func _ready() -> void:
-	# Debug: Print the node tree to find AnimationPlayer
-	print("=== Player Node Tree ===")
-	print_node_tree($KnightCharacter, 0)
-
-	# Try to find the AnimationPlayer in the KnightCharacter scene
+	# Find the AnimationPlayer in the KnightCharacter scene
 	animation_player = find_animation_player($KnightCharacter)
 
 	if animation_player:
-		print("Found AnimationPlayer at: ", animation_player.get_path())
-		print("Available animations: ", animation_player.get_animation_list())
+		# Start with idle animation
+		animation_player.play("HumanArmature|Idle")
 	else:
-		print("ERROR: AnimationPlayer not found!")
-
-func print_node_tree(node: Node, depth: int) -> void:
-	var indent = ""
-	for i in range(depth):
-		indent += "  "
-	print(indent + node.name + " (" + node.get_class() + ")")
-	for child in node.get_children():
-		print_node_tree(child, depth + 1)
+		push_error("AnimationPlayer not found in KnightCharacter!")
 
 func find_animation_player(node: Node) -> AnimationPlayer:
 	if node is AnimationPlayer:
@@ -59,15 +47,15 @@ func _physics_process(delta: float) -> void:
 		rotation.y = lerp_angle(rotation.y, target_rotation, 10.0 * delta)
 
 		# Play walk animation
-		if animation_player and not animation_player.is_playing():
-			animation_player.play("Armature|Walk")
+		if animation_player and animation_player.current_animation != "HumanArmature|Walking":
+			animation_player.play("HumanArmature|Walking")
 	else:
 		# Apply friction when not moving
 		velocity.x = move_toward(velocity.x, 0, friction * delta)
 		velocity.z = move_toward(velocity.z, 0, friction * delta)
 
-		# Stop animation when idle
-		if animation_player and animation_player.is_playing():
-			animation_player.stop()
+		# Play idle animation when not moving
+		if animation_player and animation_player.current_animation != "HumanArmature|Idle":
+			animation_player.play("HumanArmature|Idle")
 
 	move_and_slide()
