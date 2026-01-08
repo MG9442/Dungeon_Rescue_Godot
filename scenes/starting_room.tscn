@@ -1,8 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://c2yfvq4m2hn8l"]
+[gd_scene load_steps=9 format=3 uid="uid://c2yfvq4m2hn8l"]
 
 [ext_resource type="PackedScene" uid="uid://drmbqjfedokm5" path="res://Updated Modular Dungeon Pack/FBX/Floor_Modular.fbx" id="1_floor"]
 [ext_resource type="PackedScene" uid="uid://cgwnac8dm24gd" path="res://Updated Modular Dungeon Pack/FBX/Wall_Modular.fbx" id="2_wall"]
 [ext_resource type="PackedScene" uid="uid://dlq8uw3gq78dj" path="res://Updated Modular Dungeon Pack/FBX/Torch.fbx" id="3_torch"]
+[ext_resource type="PackedScene" uid="uid://b8xj2k5n9qwrt" path="res://scenes/player.tscn" id="4_player"]
+[ext_resource type="Script" path="res://scripts/camera_follow.gd" id="5_camera"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_xqjnc"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -35,6 +37,11 @@ shadow_enabled = true
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(0.866025, -0.25, 0.433013, 0, 0.866025, 0.5, -0.5, -0.433013, 0.75, 18, 8, 18)
 fov = 60.0
+script = ExtResource("5_camera")
+target_path = NodePath("../Player")
+
+[node name="Player" parent="." instance=ExtResource("4_player")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 1, 5)
 
 [node name="Room" type="Node3D" parent="."]
 

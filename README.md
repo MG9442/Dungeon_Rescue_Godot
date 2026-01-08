@@ -23,17 +23,30 @@ The starting room (`scenes/starting_room.tscn`) includes:
 - Enhanced environment with SSAO and tonemapping
 - Dungeon-themed colors and atmospheric lighting
 
+## Character Controller
+
+The player character uses the Knight model from the Quaternius character pack:
+- **Movement**: WASD keys
+  - W: Move forward
+  - S: Move backward
+  - A: Move left
+  - D: Move right
+- Character automatically rotates to face movement direction
+- Smooth camera follows the player with a third-person perspective
+- Physics-based movement with acceleration and friction
+
 ## Getting Started
 
 1. Open the project in Godot 4.3 or later
 2. The main scene is set to `scenes/starting_room.tscn`
 3. Press F5 or click the Play button to run the project
+4. Use WASD keys to move the knight character around the dungeon
 
 ## Next Steps
 
-- Add a character controller
-- Replace CSG primitives with modular dungeon pack assets from `Updated Modular Dungeon Pack/FBX/`
-  - The FBX files will auto-import when you open the project in Godot
-  - You can drag and drop the imported models into the scene
-- Add interactive elements (doors, chests, etc.)
+- Add animations to the character (idle, walk, run)
+- Add interactive elements (doors, chests, levers)
 - Create additional rooms and corridors
+- Add combat mechanics
+- Add enemy NPCs
+- Implement inventory system
