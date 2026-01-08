@@ -17,3 +17,6 @@ mono_crash.*.json
 
 #Blend exclude
 *.blend
+
+#Import exclude
+*.import
