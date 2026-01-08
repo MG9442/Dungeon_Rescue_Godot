@@ -1,7 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://b8xj2k5n9qwrt"]
+[gd_scene load_steps=4 format=3 uid="uid://b8xj2k5oaqwrt"]
 
 [ext_resource type="Script" path="res://scripts/player_controller.gd" id="1_script"]
-[ext_resource type="PackedScene" uid="uid://dr6t3uf42oq87" path="res://Knight Character Animated by Quaternius/FBX/KnightCharacter.fbx" id="2_knight"]
+[ext_resource type="PackedScene" uid="uid://c1uht61jph2j8" path="res://Knight Character Animated by Quaternius/FBX/KnightCharacter.fbx" id="2_knight"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_player"]
 radius = 0.4
@@ -15,4 +15,3 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
 shape = SubResource("CapsuleShape3D_player")
 
 [node name="KnightCharacter" parent="." instance=ExtResource("2_knight")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)

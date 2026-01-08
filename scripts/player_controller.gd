@@ -12,7 +12,7 @@ func _ready() -> void:
 	# Find the AnimationPlayer in the KnightCharacter scene
 	animation_player = $KnightCharacter/AnimationPlayer
 	if animation_player:
-		animation_player.play("Armature|Walk")
+		animation_player.play("HumanArmature|Walk")
 
 func _physics_process(delta: float) -> void:
 	# Apply gravity
@@ -35,7 +35,7 @@ func _physics_process(delta: float) -> void:
 
 		# Play walk animation
 		if animation_player and not animation_player.is_playing():
-			animation_player.play("Armature|Walk")
+			animation_player.play("HumanArmature|Walk")
 	else:
 		# Apply friction when not moving
 		velocity.x = move_toward(velocity.x, 0, friction * delta)
