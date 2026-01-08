@@ -9,10 +9,35 @@ extends CharacterBody3D
 var animation_player: AnimationPlayer
 
 func _ready() -> void:
-	# Find the AnimationPlayer in the KnightCharacter scene
-	animation_player = $KnightCharacter/AnimationPlayer
+	# Debug: Print the node tree to find AnimationPlayer
+	print("=== Player Node Tree ===")
+	print_node_tree($KnightCharacter, 0)
+
+	# Try to find the AnimationPlayer in the KnightCharacter scene
+	animation_player = find_animation_player($KnightCharacter)
+
 	if animation_player:
-		animation_player.play("Armature|Walk")
+		print("Found AnimationPlayer at: ", animation_player.get_path())
+		print("Available animations: ", animation_player.get_animation_list())
+	else:
+		print("ERROR: AnimationPlayer not found!")
+
+func print_node_tree(node: Node, depth: int) -> void:
+	var indent = ""
+	for i in range(depth):
+		indent += "  "
+	print(indent + node.name + " (" + node.get_class() + ")")
+	for child in node.get_children():
+		print_node_tree(child, depth + 1)
+
+func find_animation_player(node: Node) -> AnimationPlayer:
+	if node is AnimationPlayer:
+		return node
+	for child in node.get_children():
+		var result = find_animation_player(child)
+		if result:
+			return result
+	return null
 
 func _physics_process(delta: float) -> void:
 	# Apply gravity
