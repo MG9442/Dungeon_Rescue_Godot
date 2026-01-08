@@ -15,11 +15,13 @@ A dungeon exploration game built with Godot 4.
 ## Starting Room
 
 The starting room (`scenes/starting_room.tscn`) includes:
-- A 10x10 unit enclosed room with floor, walls, and ceiling
-- Directional lighting with shadows
-- A camera positioned to view the room
-- Basic environment with ambient lighting
-- Dungeon-themed colors (browns and grays)
+- A 25' x 12' x 10' enclosed room built with modular dungeon pack assets
+- Modular floor tiles using `Floor_Modular.fbx`
+- Modular wall segments using `Wall_Modular.fbx`
+- Four corner torches with atmospheric point lights
+- Directional lighting with shadows for overall illumination
+- Camera positioned to view the entire room
+- Enhanced environment with SSAO and tonemapping
 
 ## Getting Started
 
